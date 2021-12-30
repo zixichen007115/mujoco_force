@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+
+	<worldbody>
+
+<!-- gel -->
+		<body name="gel" pos="0 0 0.036">
+			<geom type="box" condim="6" size="0.01 0.01 0.002" rgba ="1 1 1 0.3" solimp="0.99 0.99 0.01" solref="0.02 0" mass="1"></geom>
+		</body>
+
+
+<!-- probe -->
+		<body name="probe" pos="0 0.00 0.058">
+			<geom type="cylinder" size="0.001 0.01"rgba ="0 1 0 1" ></geom>
+			<joint name="slide0" axis="1 0 0" damping="100"  pos="0 0 0" type="slide"/>
+			<joint name="slide1" axis="0 1 0" damping="100"  pos="0 0 0" type="slide"/>
+			<joint name="slide2" axis="0 0 1" damping="100"  pos="0 0 0" type="slide"/>
+			<site name='touch'/>
+		</body>
+
+	</worldbody>
+
+	<actuator>
+		<position gear="30" joint="slide0" kp="1"/>
+		<position gear="30" joint="slide1" kp="1"/>
+		<position gear="60" joint="slide2" kp="1"/>
+	</actuator>
+
+	<sensor>
+		<force name="F/T" site="touch"/>
+		<framepos name="position" objtype="body" objname="probe"/>
+	</sensor>
+
+	<size njmax="12000" nconmax="10000"/>
+	<option timestep="0.00001" gravity="0 0 0"/>
+
+</mujoco>
