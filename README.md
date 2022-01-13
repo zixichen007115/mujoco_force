@@ -10,3 +10,8 @@ python plot.py
 ```
 The example is shown here.
 ![figure](https://github.com/zixichen007115/mujoco_force/blob/main/Figure_1.png "force and displacement on x, y, and z-axis")
+
+About the stack overflow error, run force_xy.py.
+```
+python force_xy.py
+```
