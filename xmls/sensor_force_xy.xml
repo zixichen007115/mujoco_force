@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+	<worldbody>
+
+<!-- probe -->
+		<body name="probe" pos="-0.02 0.002 0.0480">
+			<geom type="cylinder" size="0.005 0.01"rgba ="0 1 0 1" condim="6" friction="100 100 100" ></geom>
+			<joint name="slide0" axis="1 0 0" damping="100"  pos="0 0 0" type="slide"/>
+			<joint name="slide1" axis="0 1 0" damping="100"  pos="0 0 0" type="slide"/>
+			<joint name="slide2" axis="0 0 1" damping="100"  pos="0 0 0" type="slide"/>
+			<joint name="slide3" axis="1 0 0" damping="100"  pos="0 0 0" type="slide"/>
+			<site name='touch'/>
+		</body>
+
+<!-- gel -->
+<!-- 		<body name="gel" pos="0.00 0.00 0.036">
+			<composite type="particle" count="30 30 6" spacing="0.000667" solimpsmooth="0.2 0.01">
+				<joint kind="main" stiffness="700" damping="100" solreffix="-100 -10" 
+					solimpfix="0.9 0.97 0.000001 0.9 2" />
+				<tendon kind="main" stiffness="700" damping="100" solreffix="-100 -10" 
+					solimpfix="0.9 0.97 0.000001 0.9 2"/>
+				<geom size="0.000333" rgba ="1 1 1 0.9" contype="0" conaffinity="1"/>
+			</composite>
+		</body> -->
+
+		<body name="gel" pos="0.001 0.001 0.037">
+			<composite type="particle" count="40 40 8" spacing="0.0005" solimpsmooth="0.2 0.01">
+				<!-- <joint kind="main" stiffness="7" damping="1" /> -->
+				<joint kind="main" stiffness="0.02" damping="1e-6" />
+
+				<tendon kind="main" stiffness="7" damping="1" />
+				<geom size="0.00025" rgba ="1 1 1 0.9" contype="0" conaffinity="1" condim="6" priority="1"/>
+			</composite>
+		</body>
+
+
+
+
+
+	</worldbody>
+
+	<actuator>
+		<position gear="50" joint="slide0" kp="1"/>
+		<position gear="50" joint="slide1" kp="1"/>
+		<position gear="100" joint="slide2" kp="1"/>
+		<velocity gear="10" joint="slide3"/>
+	</actuator>
+
+	<sensor>
+		<force name="F/T" site="touch"/>
+		<framepos name="position" objtype="body" objname="probe"/>
+	</sensor>
+
+	<!-- <size njmax="4000" nconmax="4000" /> -->
+	<!-- <size nconmax="200"/> -->
+
+	<option timestep="0.0001" solver="PGS" gravity="0 0 0"/>
+
+<!-- 	<option timestep="0.00001" solver="PGS" iterations="1000" noslip_iterations="1000" noslip_tolerance="1e-10" mpr_iterations="500" mpr_tolerance="1e-10">
+		<flag frictionloss="disable" override="enable"></flag>
+	</option> -->
+
+</mujoco>
