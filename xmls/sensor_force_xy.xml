@@ -16,7 +16,6 @@
 
 		<body name="gel" pos="0.001 0.001 0.037">
 			<composite type="particle" count="40 40 8" spacing="0.0005" solimpsmooth="0.2 0.01">
-				<!-- <joint kind="main" stiffness="7" damping="1" /> -->
 				<joint kind="main" stiffness="0.02" damping="1e-6" />
 
 				<tendon kind="main" stiffness="7" damping="1" />
